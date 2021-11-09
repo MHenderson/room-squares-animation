@@ -1,0 +1,22 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# room-squares-animation
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of room-squares-animation is to animate sequences of partial Room
+squares.
+
+![](out.gif)
