@@ -1,1 +1,1 @@
-convert -delay 25 frames/*.png out.gif
+convert -delay 25 frames/images/*.png out.gif
