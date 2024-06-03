@@ -1,12 +1,8 @@
+library(here)
 library(magick)
-library(tictoc)
 
-tic()
-sizes <- seq(0, 75, 1)
-
-imgs <- image_read(paste0("frames/frame", sizes, ".png"))
+imgs <- image_read(list.files(here("plot"), full.names = TRUE))
 
 animation <- image_animate(image_scale(imgs, "600x600"), fps = 4, dispose = "previous")
 
-image_write(animation, "animation.gif")
-toc()
+image_write(animation, "gif/out.gif")
