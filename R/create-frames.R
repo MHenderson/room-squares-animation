@@ -90,23 +90,20 @@ R <- tribble(~row, ~col, ~first, ~second,
 # assuming that the partial room squares have rows indexed 1, ..., n - 1.
 n <- max(R$row) + 1
 
-# plot frame and write to disk
-write_frame <- function(i) {
+for(i in 1:nrow(R)) {
   
   # filter the current partial Room square
   # and add a variable giving the number of
   # available pairs in every cell
-  X1 <- head(R, i) |>
-    add_Pe(n)
+  head(R, i) |>
+    add_Pe(n) |>
+    plot_partial_room_square() |>
+    ggsave(
+            file = file.path(here("plot"), paste0("frame", sprintf("%02d", i), ".png")),
+           width = 4,
+          height = 4,
+              bg = "white",
+      create.dir = TRUE
+    )
   
-  # plot the current partal Room square
-  plot_partial_room_square(X1)
-
-  # save the plot to disk
-  ggsave(file = file.path(here("plot"), paste0("frame", sprintf("%02d", i), ".png")), width = 4, height = 4, bg = "white", create.dir = TRUE)
-  
-}
-
-for(i in 1:nrow(R)) {
-  write_frame(i)
 } 
