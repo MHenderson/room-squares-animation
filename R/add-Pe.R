@@ -1,7 +1,7 @@
 add_Pe <- function(R, n) {
   X <- tidyr::expand_grid(row = 1:(n - 1), col = 1:(n - 1))
   
-  R_with_empties <- dplyr::left_join(X, R)
+  R_with_empties <- dplyr::left_join(X, R, by = join_by(row, col))
   
   just_empty_cells <- R_with_empties |>
     dplyr::filter(is.na(first), is.na(second))
