@@ -3,10 +3,9 @@ library(dplyr)
 library(ggplot2)
 library(purrr)
 library(tidyr)
+library(wallis)
 
 source(here("R", "add-Pe.R"))
-source(here("R", "grid_lines.R"))
-source(here("R", "plot_partial_room_square.R"))
 source(here("R", "see2.R"))
 
 R <- tribble(~row, ~col, ~first, ~second,
@@ -87,23 +86,27 @@ R <- tribble(~row, ~col, ~first, ~second,
              13, 12,      4,       6
 )
 
-# assuming that the partial room squares have rows indexed 1, ..., n - 1.
-n <- max(R$row) + 1
+
+n <- 14
 
 for(i in 1:nrow(R)) {
   
   # filter the current partial Room square
   # and add a variable giving the number of
   # available pairs in every cell
-  head(R, i) |>
+  RR <- head(R, i) |>
     add_Pe(n) |>
-    plot_partial_room_square() |>
-    ggsave(
-            file = file.path(here("plot"), paste0("frame", sprintf("%02d", i), ".png")),
-           width = 4,
-          height = 4,
-              bg = "white",
-      create.dir = TRUE
-    )
+    mutate(fill = 0)
+  
+  plot_room_square(RR) +
+    geom_tile(data = RR |> filter(is.na(first)), aes(fill = n_Pe))
+  
+  ggsave(
+           file = file.path(here("plot"), paste0("frame", sprintf("%02d", i), ".png")),
+          width = 4,
+         height = 4,
+             bg = "white",
+     create.dir = TRUE
+  )
   
 } 

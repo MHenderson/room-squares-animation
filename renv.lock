@@ -527,6 +527,25 @@
       ],
       "Hash": "c826c7c4241b6fc89ff55aaea3fa7491"
     },
+    "wallis": {
+      "Package": "wallis",
+      "Version": "0.0.0.9001",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "MHenderson",
+      "RemoteRepo": "wallis",
+      "RemoteRef": "main",
+      "RemoteSha": "b67790b0e8c4a7d8022e514b4263952322000e55",
+      "Requirements": [
+        "dplyr",
+        "ggplot2",
+        "purrr",
+        "tibble",
+        "tidyr"
+      ],
+      "Hash": "7e57f1323eae9edcead98b018e38072a"
+    },
     "withr": {
       "Package": "withr",
       "Version": "3.0.0",
